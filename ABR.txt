@@ -1,0 +1,302 @@
+System Bootstrap, Version 12.1(3r)T2, RELEASE SOFTWARE (fc1)
+Copyright (c) 2000 by cisco Systems, Inc.
+PT 1001 (PTSC2005) processor (revision 0x200) with 60416K/5120K bytes of memory
+
+Readonly ROMMON initialized
+
+Self decompressing the image :
+######################### [OK]
+
+              Restricted Rights Legend
+
+Use, duplication, or disclosure by the Government is
+subject to restrictions as set forth in subparagraph
+(c) of the Commercial Computer Software - Restricted
+Rights clause at FAR sec. 52.227-19 and subparagraph
+(c) (1) (ii) of the Rights in Technical Data and Computer
+Software clause at DFARS sec. 252.227-7013.
+
+           cisco Systems, Inc.
+           170 West Tasman Drive
+           San Jose, California 95134-1706
+
+
+
+Cisco Internetwork Operating System Software
+IOS (tm) PT1000 Software (PT1000-I-M), Version 12.2(28), RELEASE SOFTWARE (fc5)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2005 by cisco Systems, Inc.
+Compiled Wed 27-Apr-04 19:01 by miwang
+
+PT 1001 (PTSC2005) processor (revision 0x200) with 60416K/5120K bytes of memory
+.
+Processor board ID PT0123 (0123)
+PT2005 processor: part number 0, mask 01
+Bridging software.
+X.25 software, Version 3.0.0.
+4 FastEthernet/IEEE 802.3 interface(s)
+2 Low-speed serial(sync/async) network interface(s)
+32K bytes of non-volatile configuration memory.
+63488K bytes of ATA CompactFlash (Read/Write)
+
+Press RETURN to get started!
+
+
+%LINK-5-CHANGED: Interface Serial2/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial2/0, changed state to up
+
+00:00:10: %OSPF-5-ADJCHG: Process 1, Nbr 1.1.1.1 on Serial2/0 from LOADING to FULL, Loading Done
+
+
+ABR>en
+ABR#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ABR(config)#int se
+ABR(config)#int serial 2/0
+ABR(config-if)#ip add
+ABR(config-if)#ip address 10.1.1.2 255.255.255.0
+ABR(config-if)#exit
+ABR(config)#int se
+ABR(config)#int serial 3/0 
+ABR(config-if)#ip add
+ABR(config-if)#ip address 192.168.1.1 255.255.255.0
+ABR(config-if)#exit
+ABR(config)#
+
+
+
+
+
+
+
+
+ABR con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+ABR>en
+ABR#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+ABR(config)#ro
+ABR(config)#router o
+ABR(config)#router ospf 1
+ABR(config-router)#ro
+ABR(config-router)#router-id 1.1.2.2
+ABR(config-router)#net
+ABR(config-router)#network 10.0.0.0 0.255.255.255
+% Incomplete command.
+ABR(config-router)#network 10.0.0.0 0.255.255.255 area 0
+ABR(config-router)#
+
+
+R2AR0>  
+R2AR0>show ip ospf da
+R2AR0>show ip ospf database ne
+R2AR0>show ip ospf database network 
+
+            OSPF Router with ID (2.2.2.2) (Process ID 1)
+
+                Net Link States (Area 0)
+
+  Routing Bit Set on this LSA
+  LS age: 242
+  Options: (No TOS-capability, DC)
+  LS Type: Network Links
+  Link State ID: 10.2.2.2  (address of Designated Router)
+  Advertising Router: 2.2.2.2
+  LS Seq Number: 80000003
+  Checksum: 0xf045
+  Length: 32
+  Network Mask: /24
+        Attached Router: 1.1.1.1
+        Attached Router: 2.2.2.2
+R2AR0>show ip ospf database router
+
+            OSPF Router with ID (2.2.2.2) (Process ID 1)
+
+                Router Link States (Area 0)
+
+  LS age: 1774
+  Options: (No TOS-capability, DC)
+  LS Type: Router Links
+  Link State ID: 2.2.2.2
+  Advertising Router: 2.2.2.2
+  LS Seq Number: 8000000f
+  Checksum: 0xab94
+  Length: 84
+  Number of Links: 5
+
+    Link connected to: a Transit Network
+     (Link ID) Designated Router address: 10.2.2.2
+     (Link Data) Router Interface address: 10.2.2.2
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 10.24.0.1
+     (Link Data) Network Mask: 255.255.255.255
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 10.24.1.1
+     (Link Data) Network Mask: 255.255.255.255
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 10.24.2.1
+     (Link Data) Network Mask: 255.255.255.255
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 10.24.3.1
+     (Link Data) Network Mask: 255.255.255.255
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 1
+
+  LS age: 330
+  Options: (No TOS-capability, DC)
+  LS Type: Router Links
+  Link State ID: 1.1.2.2
+  Advertising Router: 1.1.2.2
+  LS Seq Number: 80000005
+  Checksum: 0x8017
+  Length: 48
+  Area Border Router
+  Number of Links: 2
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 1.1.1.1
+     (Link Data) Router Interface address: 10.1.1.2
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 64
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 10.1.1.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 64
+
+  LS age: 296
+  Options: (No TOS-capability, DC)
+  LS Type: Router Links
+  Link State ID: 1.1.1.1
+  Advertising Router: 1.1.1.1
+  LS Seq Number: 80000007
+  Checksum: 0xc5a4
+  Length: 60
+  Number of Links: 3
+
+    Link connected to: a Transit Network
+     (Link ID) Designated Router address: 10.2.2.2
+     (Link Data) Router Interface address: 10.2.2.1
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 1.1.2.2
+     (Link Data) Router Interface address: 10.1.1.1
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 64
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 10.1.1.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 64
+R2AR0> 
+
+
+
+
+
+
+
+
+R2AR0 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+R2AR0>show ip ospf database network 
+
+            OSPF Router with ID (2.2.2.2) (Process ID 1)
+
+                Net Link States (Area 0)
+
+  Routing Bit Set on this LSA
+  LS age: 1688
+  Options: (No TOS-capability, DC)
+  LS Type: Network Links
+  Link State ID: 10.2.2.2  (address of Designated Router)
+  Advertising Router: 2.2.2.2
+  LS Seq Number: 80000003
+  Checksum: 0xf045
+  Length: 32
+  Network Mask: /24
+        Attached Router: 1.1.1.1
+        Attached Router: 2.2.2.2
+R2AR0>
+
+
+
+
+
+
+
+
+R2AR0 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+

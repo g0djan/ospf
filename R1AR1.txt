@@ -1,0 +1,362 @@
+System Bootstrap, Version 12.1(3r)T2, RELEASE SOFTWARE (fc1)
+Copyright (c) 2000 by cisco Systems, Inc.
+PT 1001 (PTSC2005) processor (revision 0x200) with 60416K/5120K bytes of memory
+
+Readonly ROMMON initialized
+
+Self decompressing the image :
+######################### [OK]
+
+              Restricted Rights Legend
+
+Use, duplication, or disclosure by the Government is
+subject to restrictions as set forth in subparagraph
+(c) of the Commercial Computer Software - Restricted
+Rights clause at FAR sec. 52.227-19 and subparagraph
+(c) (1) (ii) of the Rights in Technical Data and Computer
+Software clause at DFARS sec. 252.227-7013.
+
+           cisco Systems, Inc.
+           170 West Tasman Drive
+           San Jose, California 95134-1706
+
+
+
+Cisco Internetwork Operating System Software
+IOS (tm) PT1000 Software (PT1000-I-M), Version 12.2(28), RELEASE SOFTWARE (fc5)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2005 by cisco Systems, Inc.
+Compiled Wed 27-Apr-04 19:01 by miwang
+
+PT 1001 (PTSC2005) processor (revision 0x200) with 60416K/5120K bytes of memory
+.
+Processor board ID PT0123 (0123)
+PT2005 processor: part number 0, mask 01
+Bridging software.
+X.25 software, Version 3.0.0.
+4 FastEthernet/IEEE 802.3 interface(s)
+2 Low-speed serial(sync/async) network interface(s)
+32K bytes of non-volatile configuration memory.
+63488K bytes of ATA CompactFlash (Read/Write)
+
+Press RETURN to get started!
+
+
+%LINK-5-CHANGED: Interface Serial3/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial3/0, changed state to up
+
+00:00:10: %OSPF-5-ADJCHG: Process 1, Nbr 4.4.4.4 on Serial3/0 from LOADING to FULL, Loading Done
+
+
+R1AR1>en
+R1AR1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1AR1(config)#int se2/0
+R1AR1(config-if)#exit
+R1AR1(config)#int se
+R1AR1(config)#int serial 2/0
+R1AR1(config-if)#ip add
+R1AR1(config-if)#ip address 192.168.1.2 255.255.255.0
+R1AR1(config-if)#exit
+R1AR1(config)#int se
+R1AR1(config)#int serial 3/0
+R1AR1(config-if)#ip add
+R1AR1(config-if)#ip address 19
+R1AR1(config-if)#ip address 192.168.2.1 255.255.255.0
+R1AR1(config-if)#
+
+
+
+
+
+
+
+
+R1AR1 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+R1AR1>en
+R1AR1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1AR1(config)#ospf 1
+              ^
+% Invalid input detected at '^' marker.
+	
+R1AR1(config)#route os
+R1AR1(config)#route ospf 1
+R1AR1(config-router)#net
+R1AR1(config-router)#network 192.168.1.0 0.0.0.255 area 1
+R1AR1(config-router)#network 192.168.2.0 0.0.0.255 area 1
+R1AR1(config-router)#end
+R1AR1#
+%SYS-5-CONFIG_I: Configured from console by console
+wr mem
+Building configuration...
+[OK]
+R1AR1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1AR1(config)#router ospf
+% Incomplete command.
+R1AR1(config)#router ospf 1
+R1AR1(config-router)#ne
+R1AR1(config-router)#net
+R1AR1(config-router)#network 192.168.0.0 0.0.255.255 area 1
+R1AR1(config-router)#
+%LINK-5-CHANGED: Interface Serial2/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial2/0, changed state to up
+
+R1AR1(config-router)#exit
+R1AR1(config)#i
+02:27:15: %OSPF-5-ADJCHG: Process 1, Nbr 1.1.2.2 on Serial2/0 from LOADING to FULL, Loading Doneint se2/0
+R1AR1(config-if)#no shu
+R1AR1(config-if)#no shutdown 
+R1AR1(config-if)#exit
+R1AR1(config)#
+
+
+
+
+
+
+
+
+R1AR1 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+04:11:18: %OSPF-5-ADJCHG: Process 1, Nbr 1.1.2.2 on Serial2/0 from FULL to DOWN, Neighbor Down: Dead timer expired
+
+04:11:18: %OSPF-5-ADJCHG: Process 1, Nbr 1.1.2.2 on Serial2/0 from FULL to DOWN, Neighbor Down: Interface down or detached
+
+04:12:01: %OSPF-5-ADJCHG: Process 1, Nbr 4.4.4.4 on Serial3/0 from FULL to DOWN, Neighbor Down: Dead timer expired
+
+04:12:01: %OSPF-5-ADJCHG: Process 1, Nbr 4.4.4.4 on Serial3/0 from FULL to DOWN, Neighbor Down: Interface down or detached
+
+
+R1AR1>show i
+R1AR1>en
+R1AR1#show ip route
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+C    192.168.1.0/24 is directly connected, Serial2/0
+C    192.168.2.0/24 is directly connected, Serial3/0
+
+R1AR1#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1AR1(config)#rout
+R1AR1(config)#router os
+R1AR1(config)#router ospf 1
+R1AR1(config-router)#area 1 st
+R1AR1(config-router)#area 1 stub 
+R1AR1(config-router)#do sh 
+04:13:19: %OSPF-5-ADJCHG: Process 1, Nbr 1.1.2.2 on Serial2/0 from LOADING to FULL, Loading Done
+i
+04:13:20: %OSPF-5-ADJCHG: Process 1, Nbr 4.4.4.4 on Serial3/0 from LOADING to FULL, Loading Donedo show ip route
+sh do show ip route
+    ^
+% Invalid input detected at '^' marker.
+	
+R1AR1(config-router)#end
+R1AR1#
+%SYS-5-CONFIG_I: Configured from console by console
+wr mem
+Building configuration...
+[OK]
+R1AR1#sh
+R1AR1#show ip
+R1AR1#show ip ro
+R1AR1#show ip route 
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is 192.168.1.1 to network 0.0.0.0
+
+     10.0.0.0/8 is variably subnetted, 6 subnets, 2 masks
+O IA    10.1.1.0/24 [110/128] via 192.168.1.1, 00:00:13, Serial2/0
+O IA    10.2.2.0/24 [110/129] via 192.168.1.1, 00:00:13, Serial2/0
+O IA    10.24.0.1/32 [110/130] via 192.168.1.1, 00:00:13, Serial2/0
+O IA    10.24.1.1/32 [110/130] via 192.168.1.1, 00:00:13, Serial2/0
+O IA    10.24.2.1/32 [110/130] via 192.168.1.1, 00:00:13, Serial2/0
+O IA    10.24.3.1/32 [110/130] via 192.168.1.1, 00:00:13, Serial2/0
+C    192.168.1.0/24 is directly connected, Serial2/0
+C    192.168.2.0/24 is directly connected, Serial3/0
+O*IA 0.0.0.0/0 [110/65] via 192.168.1.1, 00:00:13, Serial2/0
+
+R1AR1#show ip os
+R1AR1#show ip ospf da
+R1AR1#show ip ospf database ex
+R1AR1#show ip ospf database external 
+
+            OSPF Router with ID (3.3.3.3) (Process ID 1)
+
+                Type-5 AS External Link States
+
+  Routing Bit Set on this LSA
+  LS age: 1514
+  Options: (No TOS-capability, DC)
+  LS Type: AS External Link
+  Link State ID: 10.3.3.0 (External Network Number )
+  Advertising Router: 2.2.2.2
+  LS Seq Number: 80000001
+  Checksum: 0xc5e2
+  Length: 36
+  Network Mask: /24
+        Metric Type: 2 (Larger than any link state path)
+        TOS: 0
+        Metric: 20
+        Forward Address: 0.0.0.0
+        External Route Tag: 0
+
+  Routing Bit Set on this LSA
+  LS age: 1297
+  Options: (No TOS-capability, DC)
+  LS Type: AS External Link
+  Link State ID: 172.20.0.0 (External Network Number )
+  Advertising Router: 2.2.2.2
+  LS Seq Number: 80000001
+  Checksum: 0xd81f
+  Length: 36
+  Network Mask: /16
+        Metric Type: 2 (Larger than any link state path)
+        TOS: 0
+        Metric: 20
+        Forward Address: 0.0.0.0
+        External Route Tag: 0
+R1AR1#show ip ospf database su
+R1AR1#show ip ospf database summary 
+
+            OSPF Router with ID (3.3.3.3) (Process ID 1)
+
+                Summary Net Link States (Area 1)
+
+  LS age: 764
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: Summary Links(Network)
+  Link State ID: 10.1.1.0 (summary Network Number)
+  Advertising Router: 1.1.2.2
+  LS Seq Number: 80000032
+  Checksum: 0xe4f6
+  Length: 28
+  Network Mask: /24
+        TOS: 0  Metric: 64
+
+  LS age: 764
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: Summary Links(Network)
+  Link State ID: 10.2.2.0 (summary Network Number)
+  Advertising Router: 1.1.2.2
+  LS Seq Number: 80000033
+  Checksum: 0xd502
+  Length: 28
+  Network Mask: /24
+        TOS: 0  Metric: 65
+
+  LS age: 408
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: Summary Links(Network)
+  Link State ID: 10.24.0.1 (summary Network Number)
+  Advertising Router: 1.1.2.2
+  LS Seq Number: 80000034
+  Checksum: 0xe0df
+  Length: 28
+  Network Mask: /32
+        TOS: 0  Metric: 66
+
+  LS age: 398
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: Summary Links(Network)
+  Link State ID: 10.24.1.1 (summary Network Number)
+  Advertising Router: 1.1.2.2
+  LS Seq Number: 80000035
+  Checksum: 0xd3ea
+  Length: 28
+  Network Mask: /32
+        TOS: 0  Metric: 66
+
+  LS age: 398
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: Summary Links(Network)
+  Link State ID: 10.24.2.1 (summary Network Number)
+  Advertising Router: 1.1.2.2
+  LS Seq Number: 80000036
+  Checksum: 0xc6f5
+  Length: 28
+  Network Mask: /32
+        TOS: 0  Metric: 66
+
+  LS age: 398
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: Summary Links(Network)
+  Link State ID: 10.24.3.1 (summary Network Number)
+  Advertising Router: 1.1.2.2
+  LS Seq Number: 80000037
+  Checksum: 0xb901
+  Length: 28
+  Network Mask: /32
+        TOS: 0  Metric: 66
+
+  LS age: 242
+  Options: (No TOS-capability, DC, Upward)
+  LS Type: Summary Links(Network)
+  Link State ID: 0.0.0.0 (summary Network Number)
+  Advertising Router: 1.1.2.2
+  LS Seq Number: 80000038
+  Checksum: 0xf927
+  Length: 28
+  Network Mask: /0
+        TOS: 0  Metric: 1
+R1AR1#wr mem
+Building configuration...
+[OK]
+R1AR1#
+
+
+
+
+
+

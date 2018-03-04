@@ -1,0 +1,569 @@
+System Bootstrap, Version 12.1(3r)T2, RELEASE SOFTWARE (fc1)
+Copyright (c) 2000 by cisco Systems, Inc.
+PT 1001 (PTSC2005) processor (revision 0x200) with 60416K/5120K bytes of memory
+
+Readonly ROMMON initialized
+
+Self decompressing the image :
+######################### [OK]
+
+              Restricted Rights Legend
+
+Use, duplication, or disclosure by the Government is
+subject to restrictions as set forth in subparagraph
+(c) of the Commercial Computer Software - Restricted
+Rights clause at FAR sec. 52.227-19 and subparagraph
+(c) (1) (ii) of the Rights in Technical Data and Computer
+Software clause at DFARS sec. 252.227-7013.
+
+           cisco Systems, Inc.
+           170 West Tasman Drive
+           San Jose, California 95134-1706
+
+
+
+Cisco Internetwork Operating System Software
+IOS (tm) PT1000 Software (PT1000-I-M), Version 12.2(28), RELEASE SOFTWARE (fc5)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2005 by cisco Systems, Inc.
+Compiled Wed 27-Apr-04 19:01 by miwang
+
+PT 1001 (PTSC2005) processor (revision 0x200) with 60416K/5120K bytes of memory
+.
+Processor board ID PT0123 (0123)
+PT2005 processor: part number 0, mask 01
+Bridging software.
+X.25 software, Version 3.0.0.
+4 FastEthernet/IEEE 802.3 interface(s)
+2 Low-speed serial(sync/async) network interface(s)
+32K bytes of non-volatile configuration memory.
+63488K bytes of ATA CompactFlash (Read/Write)
+
+Press RETURN to get started!
+
+
+%LINK-5-CHANGED: Interface Serial2/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface FastEthernet0/0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial2/0, changed state to up
+
+00:00:10: %OSPF-5-ADJCHG: Process 1, Nbr 1.1.2.2 on Serial2/0 from LOADING to FULL, Loading Done
+
+00:00:45: %OSPF-5-ADJCHG: Process 1, Nbr 2.2.2.2 on FastEthernet0/0 from LOADING to FULL, Loading Done
+
+
+R1AR0>en
+R1AR0#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1AR0(config)#int fa0/0
+R1AR0(config-if)#ip a
+R1AR0(config-if)#ip add
+R1AR0(config-if)#ip address 10.2.2.1/24
+                            ^
+% Invalid input detected at '^' marker.
+	
+R1AR0(config-if)#ip address 10.2.2.1 255.255.255.0
+R1AR0(config-if)#exit
+R1AR0(config)#int se
+R1AR0(config)#int serial 2/0
+R1AR0(config-if)#ip add
+R1AR0(config-if)#ip address 10.1.1.1 255.255.255.0
+R1AR0(config-if)#exit
+R1AR0(config)#
+
+
+
+
+
+
+
+
+R1AR0 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+R1AR0>en
+R1AR0#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1AR0(config)#ro
+R1AR0(config)#router os
+R1AR0(config)#router ospf 1
+R1AR0(config-router)#router-id 1.1.1.1
+R1AR0(config-router)#network 10.1.1.0 0.0.0.255 area 0
+R1AR0(config-router)#network 10.2.2.0 0.0.0.255 area 0
+R1AR0(config-router)#end
+R1AR0#
+%SYS-5-CONFIG_I: Configured from console by console
+wr mem
+Building configuration...
+[OK]
+R1AR0#
+R1AR0#
+
+
+
+
+
+
+
+
+R1AR0 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+R1AR0>show ip route
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     10.0.0.0/8 is variably subnetted, 6 subnets, 2 masks
+C       10.1.1.0/24 is directly connected, Serial2/0
+C       10.2.2.0/24 is directly connected, FastEthernet0/0
+O       10.24.0.1/32 [110/2] via 10.2.2.2, 00:19:21, FastEthernet0/0
+O       10.24.1.1/32 [110/2] via 10.2.2.2, 00:19:11, FastEthernet0/0
+O       10.24.2.1/32 [110/2] via 10.2.2.2, 00:19:11, FastEthernet0/0
+O       10.24.3.1/32 [110/2] via 10.2.2.2, 00:19:11, FastEthernet0/0
+
+R1AR0>show ip ospf database r
+R1AR0>show ip ospf database router 
+
+            OSPF Router with ID (1.1.1.1) (Process ID 1)
+
+                Router Link States (Area 0)
+
+  LS age: 1558
+  Options: (No TOS-capability, DC)
+  LS Type: Router Links
+  Link State ID: 1.1.1.1
+  Advertising Router: 1.1.1.1
+  LS Seq Number: 80000006
+  Checksum: 0xc7a3
+  Length: 60
+  Number of Links: 3
+
+    Link connected to: a Transit Network
+     (Link ID) Designated Router address: 10.2.2.2
+     (Link Data) Router Interface address: 10.2.2.1
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 1.1.2.2
+     (Link Data) Router Interface address: 10.1.1.1
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 64
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 10.1.1.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 64
+
+  LS age: 1592
+  Options: (No TOS-capability, DC)
+  LS Type: Router Links
+  Link State ID: 1.1.2.2
+  Advertising Router: 1.1.2.2
+  LS Seq Number: 80000004
+  Checksum: 0x8216
+  Length: 48
+  Area Border Router
+  Number of Links: 2
+
+    Link connected to: another Router (point-to-point)
+     (Link ID) Neighboring Router ID: 1.1.1.1
+     (Link Data) Router Interface address: 10.1.1.2
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 64
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 10.1.1.0
+     (Link Data) Network Mask: 255.255.255.0
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 64
+
+  LS age: 1237
+  Options: (No TOS-capability, DC)
+  LS Type: Router Links
+  Link State ID: 2.2.2.2
+  Advertising Router: 2.2.2.2
+  LS Seq Number: 8000000f
+  Checksum: 0xab94
+  Length: 84
+  Number of Links: 5
+
+    Link connected to: a Transit Network
+     (Link ID) Designated Router address: 10.2.2.2
+     (Link Data) Router Interface address: 10.2.2.2
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 10.24.0.1
+     (Link Data) Network Mask: 255.255.255.255
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 10.24.1.1
+     (Link Data) Network Mask: 255.255.255.255
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 10.24.2.1
+     (Link Data) Network Mask: 255.255.255.255
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 1
+
+    Link connected to: a Stub Network
+     (Link ID) Network/subnet number: 10.24.3.1
+     (Link Data) Network Mask: 255.255.255.255
+      Number of TOS metrics: 0
+       TOS 0 Metrics: 1
+R1AR0>
+R1AR0>
+
+
+
+
+
+
+
+
+R1AR0 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+R1AR0>    
+R1AR0>show ip o
+R1AR0>show ip ospf da
+R1AR0>show ip ospf database net
+R1AR0>show ip ospf database network 
+
+            OSPF Router with ID (1.1.1.1) (Process ID 1)
+
+                Net Link States (Area 0)
+
+  Routing Bit Set on this LSA
+  LS age: 1494
+  Options: (No TOS-capability, DC)
+  LS Type: Network Links
+  Link State ID: 10.2.2.2  (address of Designated Router)
+  Advertising Router: 2.2.2.2
+  LS Seq Number: 80000003
+  Checksum: 0xf045
+  Length: 32
+  Network Mask: /24
+        Attached Router: 1.1.1.1
+        Attached Router: 2.2.2.2
+R1AR0>
+R1AR0>
+
+
+
+
+
+
+
+
+R1AR0 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+тут чето потеряось по середине
+
+
+R1AR0#show ip route
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     10.0.0.0/8 is variably subnetted, 6 subnets, 2 masks
+C       10.1.1.0/24 is directly connected, Serial2/0
+C       10.2.2.0/24 is directly connected, FastEthernet0/0
+O       10.24.0.1/32 [110/2] via 10.2.2.2, 02:37:44, FastEthernet0/0
+O       10.24.1.1/32 [110/2] via 10.2.2.2, 02:37:34, FastEthernet0/0
+O       10.24.2.1/32 [110/2] via 10.2.2.2, 02:37:34, FastEthernet0/0
+O       10.24.3.1/32 [110/2] via 10.2.2.2, 02:37:34, FastEthernet0/0
+O IA 192.168.1.0/24 [110/128] via 10.1.1.2, 00:46:42, Serial2/0
+O IA 192.168.2.0/24 [110/192] via 10.1.1.2, 00:46:42, Serial2/0
+
+R1AR0#show ip route
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     10.0.0.0/8 is variably subnetted, 6 subnets, 2 masks
+C       10.1.1.0/24 is directly connected, Serial2/0
+C       10.2.2.0/24 is directly connected, FastEthernet0/0
+O       10.24.0.1/32 [110/2] via 10.2.2.2, 02:44:38, FastEthernet0/0
+O       10.24.1.1/32 [110/2] via 10.2.2.2, 02:44:28, FastEthernet0/0
+O       10.24.2.1/32 [110/2] via 10.2.2.2, 02:44:28, FastEthernet0/0
+O       10.24.3.1/32 [110/2] via 10.2.2.2, 02:44:28, FastEthernet0/0
+O IA 192.168.1.0/24 [110/128] via 10.1.1.2, 00:53:36, Serial2/0
+O IA 192.168.2.0/24 [110/192] via 10.1.1.2, 00:53:36, Serial2/0
+
+R1AR0#show 
+R1AR0#show ip r
+R1AR0#show ip ro
+R1AR0#show ip route 
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     10.0.0.0/8 is variably subnetted, 6 subnets, 2 masks
+C       10.1.1.0/24 is directly connected, Serial2/0
+C       10.2.2.0/24 is directly connected, FastEthernet0/0
+O       10.24.0.1/32 [110/2] via 10.2.2.2, 02:47:38, FastEthernet0/0
+O       10.24.1.1/32 [110/2] via 10.2.2.2, 02:47:28, FastEthernet0/0
+O       10.24.2.1/32 [110/2] via 10.2.2.2, 02:47:28, FastEthernet0/0
+O       10.24.3.1/32 [110/2] via 10.2.2.2, 02:47:28, FastEthernet0/0
+O IA 192.168.1.0/24 [110/128] via 10.1.1.2, 00:56:36, Serial2/0
+O IA 192.168.2.0/24 [110/192] via 10.1.1.2, 00:56:36, Serial2/0
+
+R1AR0#
+
+
+
+
+
+
+
+
+R1AR0 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+R1AR0>en
+R1AR0#show ip ro
+R1AR0#show ip route 
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     10.0.0.0/8 is variably subnetted, 7 subnets, 2 masks
+C       10.1.1.0/24 is directly connected, Serial2/0
+C       10.2.2.0/24 is directly connected, FastEthernet0/0
+O E2    10.3.3.0/24 [110/20] via 10.2.2.2, 00:04:08, FastEthernet0/0
+O       10.24.0.1/32 [110/2] via 10.2.2.2, 03:16:55, FastEthernet0/0
+O       10.24.1.1/32 [110/2] via 10.2.2.2, 03:16:45, FastEthernet0/0
+O       10.24.2.1/32 [110/2] via 10.2.2.2, 03:16:45, FastEthernet0/0
+O       10.24.3.1/32 [110/2] via 10.2.2.2, 03:16:45, FastEthernet0/0
+O E2 172.20.0.0/16 [110/20] via 10.2.2.2, 00:00:28, FastEthernet0/0
+O IA 192.168.1.0/24 [110/128] via 10.1.1.2, 01:25:53, Serial2/0
+O IA 192.168.2.0/24 [110/192] via 10.1.1.2, 01:25:53, Serial2/0
+
+R1AR0#show ip ospf da
+R1AR0#show ip ospf database ext
+R1AR0#show ip ospf database external 
+
+            OSPF Router with ID (1.1.1.1) (Process ID 1)
+
+                Type-5 AS External Link States
+
+  Routing Bit Set on this LSA
+  LS age: 282
+  Options: (No TOS-capability, DC)
+  LS Type: AS External Link
+  Link State ID: 10.3.3.0 (External Network Number )
+  Advertising Router: 2.2.2.2
+  LS Seq Number: 80000001
+  Checksum: 0xc5e2
+  Length: 36
+  Network Mask: /24
+        Metric Type: 2 (Larger than any link state path)
+        TOS: 0
+        Metric: 20
+        Forward Address: 0.0.0.0
+        External Route Tag: 0
+
+  Routing Bit Set on this LSA
+  LS age: 65
+  Options: (No TOS-capability, DC)
+  LS Type: AS External Link
+  Link State ID: 172.20.0.0 (External Network Number )
+  Advertising Router: 2.2.2.2
+  LS Seq Number: 80000001
+  Checksum: 0xd81f
+  Length: 36
+  Network Mask: /16
+        Metric Type: 2 (Larger than any link state path)
+        TOS: 0
+        Metric: 20
+        Forward Address: 0.0.0.0
+        External Route Tag: 0
+R1AR0#
+
+
+
+
+
+
+
+
+R1AR0 con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+R1AR0>en
+R1AR0#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+R1AR0(config)#rou
+R1AR0(config)#router ospf 1
+R1AR0(config-router)#are
+R1AR0(config-router)#area 1 s
+R1AR0(config-router)#area 1 stub 
+R1AR0(config-router)#do show ip route
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     10.0.0.0/8 is variably subnetted, 7 subnets, 2 masks
+C       10.1.1.0/24 is directly connected, Serial2/0
+C       10.2.2.0/24 is directly connected, FastEthernet0/0
+O E2    10.3.3.0/24 [110/20] via 10.2.2.2, 00:23:07, FastEthernet0/0
+O       10.24.0.1/32 [110/2] via 10.2.2.2, 03:35:54, FastEthernet0/0
+O       10.24.1.1/32 [110/2] via 10.2.2.2, 03:35:44, FastEthernet0/0
+O       10.24.2.1/32 [110/2] via 10.2.2.2, 03:35:44, FastEthernet0/0
+O       10.24.3.1/32 [110/2] via 10.2.2.2, 03:35:44, FastEthernet0/0
+O E2 172.20.0.0/16 [110/20] via 10.2.2.2, 00:19:27, FastEthernet0/0
+O IA 192.168.1.0/24 [110/128] via 10.1.1.2, 01:44:52, Serial2/0
+
+R1AR0(config-router)#
+
+

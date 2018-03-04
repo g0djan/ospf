@@ -1,0 +1,227 @@
+hird-party authority to import, export, distribute or use encryption.
+Importers, exporters, distributors and users are responsible for
+compliance with U.S. and local country laws. By using this product you
+agree to comply with applicable laws and regulations. If you are unable
+to comply with U.S. and local laws, return this product immediately.
+
+A summary of U.S. laws governing Cisco cryptographic products may be found at:
+http://www.cisco.com/wwl/export/crypto/tool/stqrg.html
+
+If you require further assistance please contact us by sending email to
+export@cisco.com.
+cisco 2811 (MPC860) processor (revision 0x200) with 60416K/5120K bytes of memory
+Processor board ID JAD05190MTZ (4292891495)
+M860 processor: part number 0, mask 49
+2 FastEthernet/IEEE 802.3 interface(s)
+8 Low-speed serial(sync/async) network interface(s)
+239K bytes of non-volatile configuration memory.
+62720K bytes of  ATA CompactFlash (Read/Write)
+Cisco IOS Software, 2800 Software (C2800NM-ADVIPSERVICESK9-M), Version 12.4(15)T1, RELEASE SOFTWARE (fc2)
+Technical Support: http://www.cisco.com/techsupport
+Copyright (c) 1986-2007 by Cisco Systems, Inc.
+Compiled Wed 18-Jul-07 06:21 by pt_rel_team
+
+
+         --- System Configuration Dialog ---
+
+Would you like to enter the initial configuration dialog? [yes/no]: no
+
+
+Press RETURN to get started!
+
+
+
+Router>int loopback  0
+           ^
+% Invalid input detected at '^' marker.
+	
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int lo
+Router(config)#int loopback 0
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface Loopback0, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback0, changed state to up
+ip add
+Router(config-if)#ip address ip add
+Router(config-if)#ip address 172.20.0.1 255.255.255.0
+Router(config-if)#exit
+Router(config)#int lo
+Router(config)#int loopback 1
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface Loopback1, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback1, changed state to up
+ip add
+Router(config-if)#ip address 172.20.1.1 255.255.255.0
+Router(config-if)#exit
+Router(config)#int lo
+Router(config)#int loopback  2
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface Loopback2, changed state to up
+
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Loopback2, changed state to up
+ip address 172.20.2.1 255.255.255.0
+Router(config-if)#exit
+Router(config)#rou
+Router(config)#router rip
+Router(config-router)#network 172.20.0.0
+Router(config-router)#network 172.20.1.0
+Router(config-router)#network 172.20.2.0
+Router(config-router)#exit
+Router(config)#int se 1/0
+Router(config-if)#no sh
+Router(config-if)#no shutdown 
+
+Router(config-if)#
+%LINK-5-CHANGED: Interface Serial1/0, changed state to up
+
+Router(config-if)#end
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+wr mem
+Building configuration...
+[OK]
+Router#
+%LINEPROTO-5-UPDOWN: Line protocol on Interface Serial1/0, changed state to up
+
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#rout
+Router(config)#router rip
+Router(config-router)#ver
+Router(config-router)#version 2
+Router(config-router)#red
+Router(config-router)#redistribute ri
+Router(config-router)#redistribute rip su
+Router(config-router)#redistribute rip sub
+Router(config-router)#redistribute rip subne
+Router(config-router)#redistribute rip subnets
+                                       ^
+% Invalid input detected at '^' marker.
+	
+Router(config-router)#end
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+show ip route
+Codes: C - connected, S - static, I - IGRP, R - RIP, M - mobile, B - BGP
+       D - EIGRP, EX - EIGRP external, O - OSPF, IA - OSPF inter area
+       N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+       E1 - OSPF external type 1, E2 - OSPF external type 2, E - EGP
+       i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2, ia - IS-IS inter area
+       * - candidate default, U - per-user static route, o - ODR
+       P - periodic downloaded static route
+
+Gateway of last resort is not set
+
+     172.20.0.0/24 is subnetted, 3 subnets
+C       172.20.0.0 is directly connected, Loopback0
+C       172.20.1.0 is directly connected, Loopback1
+C       172.20.2.0 is directly connected, Loopback2
+
+Router# 
+Router#conf r
+            ^
+% Invalid input detected at '^' marker.
+	
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int se1/0
+Router(config-if)#ip add
+Router(config-if)#ip address 10.3.3.2 255.255.255.0
+Router(config-if)#exit
+Router(config)#rout
+Router(config)#router rip
+Router(config-router)#ve
+Router(config-router)#version 
+% Incomplete command.
+Router(config-router)#version 2
+Router(config-router)#ne
+Router(config-router)#network 172.20.0.1
+Router(config-router)#network 172.20.1.1
+Router(config-router)#network 172.20.2.1
+Router(config-router)#
+
+
+
+
+
+
+
+
+Router con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Router>en
+Router#conf t
+Enter configuration commands, one per line.  End with CNTL/Z.
+Router(config)#int s
+Router(config)#int serial 1/0
+Router(config-if)#de
+Router(config-if)#desc
+Router(config-if)#description CONNECTION TO R2AR0
+Router(config-if)#ip add
+Router(config-if)#ip address 10.3.3.2 255.255.255.0
+Router(config-if)#exit
+Router(config)#rout
+Router(config)#router rip
+Router(config-router)#version 2
+Router(config-router)#network 10.0.0.0
+Router(config-router)#network 172.20.0.0
+Router(config-router)#end
+Router#
+%SYS-5-CONFIG_I: Configured from console by console
+wr mem
+Building configuration...
+[OK]
+Router#
+
+
+
+
+
+
+
+
+Router con0 is now available
+
+
+
+
+
+
+Press RETURN to get started.
+
+
+
+
+
+
+
+
+
+
+
